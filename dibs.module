@@ -1,0 +1,88 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * Demonstrate basic module scaffolding.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function dibs_menu() {
+  // Module settings.
+  $items['admin/config/dibs'] = array(
+    'title' => 'Dibs Config',
+    'description' => 'Dibs configuration',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dibs_admin_settings'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'dibs.admin.inc',
+    'file path' => drupal_get_path('module', 'dibs'),
+  );
+  $items['user/%user/dibs'] = array(
+    'title' => 'My Stuff',
+    'description' => 'Dibs Management',
+    'page callback' => 'dibs_page',
+    'access arguments' => array('access content'),
+    'file' => 'dibs.page.inc',
+    'file path' => drupal_get_path('module', 'dibs'),
+    'weight' => 5,
+    'type' => MENU_LOCAL_TASK,
+  );
+ $items['user/%user/mydibs'] = array(
+    'title' => 'My Dibs',
+    'description' => 'My Dibs Management',
+    'page callback' => 'mydibs_page',
+    'access arguments' => array('access content'),
+    'file' => 'dibs.page.inc',
+    'file path' => drupal_get_path('module', 'dibs'),
+    'weight' => 6,
+    'type' => MENU_LOCAL_TASK,
+  );
+ $items['mystuff'] = array(
+    'title' => 'My Stuff',
+    'description' => 'Dibs Management',
+    'page callback' => 'dibs_page',
+    'access arguments' => array('access content'),
+    'file' => 'dibs.page.inc',
+    'file path' => drupal_get_path('module', 'dibs'),
+    'weight' => 5,
+  );
+ $items['mydibs'] = array(
+    'title' => 'My Dibs',
+    'description' => 'My Dibs Management',
+    'page callback' => 'mydibs_page',
+    'access arguments' => array('access content'),
+    'file' => 'dibs.page.inc',
+    'file path' => drupal_get_path('module', 'dibs'),
+    'weight' => 6,
+  );
+ $items['dibs/%/%/%'] = array(
+    'title' => 'Offer Dibs',
+    'description' => 'Offer Dibs',
+    'page callback' => 'dibs_offer_page',
+    'page arguments' => array(1, 2, 3), 
+    'access arguments' => array('access content'),
+    'file' => 'dibs.page.inc',
+    'file path' => drupal_get_path('module', 'dibs'),
+    'weight' => 7,
+    'type' => MENU_LOCAL_TASK,
+  );
+  return $items;
+}
+
+
+/**
+ * Implements hook_help().
+ */
+function dibs_help($path, $arg) {
+  switch ($path) {
+    case 'admin/config/dibs':
+      return t('This is some help text for the dibs settings page.');
+
+    case 'admin/help#dibs':
+      $output = '<p>' . t('This is help text for the dibs help page') . '</p>';
+      return $output;
+  }
+}
