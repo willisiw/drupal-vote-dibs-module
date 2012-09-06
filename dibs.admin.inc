@@ -10,14 +10,21 @@
  * Builds and returns the scaffolding settings form.
  */
 function dibs_admin_settings() {
-  $form['dibs_max'] = array(
-    '#type' => 'select',
-    '#title' => t('Maximum number of dibs visible.'),
-    '#options' => drupal_map_assoc(range(1, 20)),
-    '#default_value' => variable_get('dibs_max', ''),
-    '#description' => t('This will set the maximum visible dibs'),
-    '#required' => TRUE,
-  );
+
+  $links = dibs_menu();
+  $helptxt = '<p><strong>This is a list of links to the resources created by the Dibs module.</strong></p>';
+  
+  foreach ($links as $link => $v) {
+    $helptxt .= '<p>' . l($v['title'] . ' - ' . $v['description'],$link) . '</p>';
+  }
+  
+  
+  $form['help'] = array(
+      '#type' => 'markup',
+      '#preface' => '<div>',
+      '#markup' => $helptxt,
+      '#suffix' => '</div>',
+   );
 
 
   return system_settings_form($form);

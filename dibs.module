@@ -11,9 +11,9 @@
  */
 function dibs_menu() {
   // Module settings.
-  $items['admin/config/dibs'] = array(
-    'title' => 'Dibs Config',
-    'description' => 'Dibs configuration',
+  $items['admin/config/user-interface/dibs'] = array(
+    'title' => 'Dibs',
+    'description' => 'Dibs module information.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('dibs_admin_settings'),
     'access arguments' => array('access administration pages'),
@@ -21,7 +21,7 @@ function dibs_menu() {
     'file path' => drupal_get_path('module', 'dibs'),
   );
   $items['user/%user/dibs'] = array(
-    'title' => 'My Stuff',
+    'title' => 'Manage Dibs',
     'description' => 'Dibs Management',
     'page callback' => 'dibs_page',
     'access arguments' => array('access content'),
@@ -40,24 +40,7 @@ function dibs_menu() {
     'weight' => 6,
     'type' => MENU_LOCAL_TASK,
   );
- $items['mystuff'] = array(
-    'title' => 'My Stuff',
-    'description' => 'Dibs Management',
-    'page callback' => 'dibs_page',
-    'access arguments' => array('access content'),
-    'file' => 'dibs.page.inc',
-    'file path' => drupal_get_path('module', 'dibs'),
-    'weight' => 5,
-  );
- $items['mydibs'] = array(
-    'title' => 'My Dibs',
-    'description' => 'My Dibs Management',
-    'page callback' => 'mydibs_page',
-    'access arguments' => array('access content'),
-    'file' => 'dibs.page.inc',
-    'file path' => drupal_get_path('module', 'dibs'),
-    'weight' => 6,
-  );
+
  $items['dibs/%/%/%'] = array(
     'title' => 'Offer Dibs',
     'description' => 'Offer Dibs',
@@ -78,11 +61,11 @@ function dibs_menu() {
  */
 function dibs_help($path, $arg) {
   switch ($path) {
-    case 'admin/config/dibs':
-      return t('This is some help text for the dibs settings page.');
+    case 'admin/config/user-interface/dibs':
+      return t('There are no settings for dibs, but there are some links.');
 
     case 'admin/help#dibs':
-      $output = '<p>' . t('This is help text for the dibs help page') . '</p>';
+      $output = '<p>' . t('There are no settings for dibs, but there are some links.') . '</p>';
       return $output;
   }
 }
