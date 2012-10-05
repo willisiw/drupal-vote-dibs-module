@@ -6,7 +6,7 @@
  */
 
 // dibs_page function
-function dibs_page() {
+function dibs_offers_page() {
   // DIBS on my nodes
   global $user;
   $build = array();
@@ -177,7 +177,7 @@ function mydibs_page() {
 
 
 
-function dibs_offer_page($nid = '', $voteid = '', $userid = '') {
+function dibs_make_offer($nid = '', $voteid = '', $userid = '') {
   global $user;
   $output = "";
   
